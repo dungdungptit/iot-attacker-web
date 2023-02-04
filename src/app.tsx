@@ -197,6 +197,6 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
 
     menuHeaderRender: undefined,
     ...initialState?.settings,
-    title: 'Xét tuyển PTIT',
+    title: 'Tấn công mạng',
   };
 };

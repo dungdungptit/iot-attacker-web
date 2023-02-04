@@ -3,8 +3,15 @@ import NmapCheck from './NmapCheck';
 import { ColumnsType } from 'antd/lib/table';
 import { Nmap } from '@/services/Nmap/nmap';
 import { useModel } from 'umi';
+import styles from './index.less';
 
 const columns: ColumnsType<Nmap> = [
+  {
+    title: 'STT',
+    dataIndex: 'id',
+    key: 'id',
+    render: (text) => <a>{text}</a>,
+  },
   {
     title: 'Port',
     dataIndex: 'port',
@@ -65,9 +72,9 @@ const NmapGlobal = () => {
   const nmap = useModel('nmap');
 
   return (
-    <div>
+    <div className={styles.nmapGlobal}>
       <NmapCheck />
-      <h3>Results Checked.</h3>
+      <h3>Kết quả</h3>
       <Spin spinning={nmap.loading}>
         <Table columns={columns} dataSource={nmap.danhSach} />
       </Spin>

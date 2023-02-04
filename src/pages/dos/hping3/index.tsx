@@ -3,6 +3,7 @@ import Hping3Check from './Hping3Check';
 import { ColumnsType } from 'antd/lib/table';
 import { Hping3 } from '@/services/Dos/hping3';
 import { useModel } from 'umi';
+import styles from './index.less';
 
 const columns: ColumnsType<Hping3> = [
   {
@@ -65,7 +66,7 @@ const Hping3Global = () => {
   const hping3 = useModel('dos.hping3');
 
   return (
-    <div>
+    <div className={styles.nmapGlobal}>
       <Hping3Check />
       <h3>Kết quả</h3>
       <Spin spinning={hping3.loading}>

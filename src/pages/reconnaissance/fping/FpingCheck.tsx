@@ -3,7 +3,7 @@ import { Button, Checkbox, Form, Input } from 'antd';
 import { useModel } from 'umi';
 import styles from './index.less';
 
-const NmapCheck = () => {
+const FpingCheck = () => {
   const nmap = useModel('nmap');
 
   const onFinish = (values: any) => {
@@ -19,7 +19,7 @@ const NmapCheck = () => {
   return (
     <Form
       name="basic"
-      className={styles.formNmap}
+      className={styles.formFping}
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
       initialValues={{ remember: true }}
@@ -27,7 +27,11 @@ const NmapCheck = () => {
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
-      <Form.Item label="IP" name="ip" rules={[{ required: true, message: 'Nhập ip!' }]}>
+      <Form.Item label="Ips" name="ips" rules={[{ required: true, message: 'Nhập ip!' }]}>
+        <Input />
+      </Form.Item>
+
+      <Form.Item label="Options" name="options" rules={[{ required: true, message: 'Nhập option!' }]}>
         <Input />
       </Form.Item>
 
@@ -40,4 +44,4 @@ const NmapCheck = () => {
   );
 };
 
-export default NmapCheck;
+export default FpingCheck;

@@ -87,14 +87,90 @@ export default defineConfig({
     },
     {
       name: 'Dos',
-      icon: 'EyeOutlined',
+      icon: 'StopOutlined',
       path: '/dos',
       routes: [
         {
-          name: 'hping3',
-          icon: 'smile',
+          name: 'Hping3',
+          icon: 'WifiOutlined',
           path: '/dos/hping3',
           component: './dos/hping3',
+        },
+        {
+          name: 'GoldenEye',
+          icon: 'WifiOutlined',
+          path: '/dos/goldeneye',
+          // component: './dos/goldeneye',
+        },
+      ],
+    },
+    {
+      name: 'Reconnaissance',
+      icon: 'SwapOutlined',
+      path: '/reconnaissance',
+      routes: [
+        // {
+        //   name: 'Nmap',
+        //   icon: 'EyeOutlined',
+        //   path: '/nmap',
+        //   component: './nmap',
+        // },
+        {
+          name: 'Pyshark',
+          icon: 'WifiOutlined',
+          path: '/reconnaissance/pyshark',
+          // component: './reconnaissance/pyshark',
+        },
+        {
+          name: 'Fping',
+          icon: 'WifiOutlined',
+          path: '/reconnaissance/fping',
+          component: './reconnaissance/fping',
+        },
+      ],
+    },
+    {
+      name: 'Access Attack',
+      icon: 'KeyOutlined',
+      path: '/access-attack',
+      routes: [
+        {
+          name: 'EterCap',
+          icon: 'WifiOutlined',
+          path: '/access-attack/etercap',
+          // component: './access-attack/etercap',
+        },
+        {
+          name: 'Sqlmap',
+          icon: 'WifiOutlined',
+          path: '/access-attack/sqlmap',
+          // component: './access-attack/sqlmap',
+        },
+      ],
+    },
+    {
+      name: 'Phising',
+      icon: 'MailOutlined',
+      path: '/phising',
+      routes: [
+        {
+          name: 'Social Engineer Toolkit',
+          icon: 'WifiOutlined',
+          path: '/phising/social-engineer-toolkit',
+          // component: './reconnaissance/pyshark',
+        },
+      ],
+    },
+    {
+      name: 'XSS',
+      icon: 'EditOutlined',
+      path: '/xss',
+      routes: [
+        {
+          name: 'Dvpwa',
+          icon: 'WifiOutlined',
+          path: '/xss/dvpwa',
+          // component: './xss/dvpwa',
         },
       ],
     },
