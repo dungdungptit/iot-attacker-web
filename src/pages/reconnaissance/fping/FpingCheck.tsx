@@ -19,7 +19,7 @@ const FpingCheck = () => {
   return (
     <Form
       name="basic"
-      className={styles.formFping}
+      className={styles.formNmap}
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
       initialValues={{ remember: true }}

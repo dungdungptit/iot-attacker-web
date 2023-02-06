@@ -4,6 +4,7 @@ import { ColumnsType } from 'antd/lib/table';
 import { Hping3 } from '@/services/Dos/hping3';
 import { useModel } from 'umi';
 import styles from './index.less';
+import Title from 'antd/lib/typography/Title';
 
 const columns: ColumnsType<Hping3> = [
   {
@@ -68,12 +69,11 @@ const Hping3Global = () => {
   return (
     <div className={styles.nmapGlobal}>
       <Hping3Check />
-      <h3>Kết quả</h3>
       <Spin spinning={hping3.loading}>
-        <h3>Trước tấn công</h3>
+        <Title level={2}>Kết quả trước tấn công</Title>
         <Table columns={columns} dataSource={hping3.danhSachTruoc} />
         <Divider />
-        <h3>Sau tấn công</h3>
+        <Title level={2}>Kết quả sau tấn công</Title>
         <Table columns={columns} dataSource={hping3.danhSachSau} />
       </Spin>
     </div>

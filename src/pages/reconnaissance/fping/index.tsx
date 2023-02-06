@@ -5,6 +5,7 @@ import { Fping } from '@/services/Reconnaissance/fping';
 import { useModel } from 'umi';
 import styles from './index.less';
 import Paragraph from 'antd/lib/typography/Paragraph';
+import Title from 'antd/lib/typography/Title';
 
 const columns: ColumnsType<Fping> = [
   {
@@ -55,7 +56,13 @@ const data: Fping[] = [
 ];
 
 const huongdan =
-  `Tùy Chọn Thăm Dò:
+  `
+Trường Ip có thể nhập nhiều địa chỉ IP hoặc tên miền, mỗi địa chỉ IP hoặc tên miền cách nhau bởi dấu cách.
+Ví dụ:
+Ips: 192.168.1.1 192.168.1.221  google.com facebook.com
+Options: -4 -c
+Trường Options có thể nhập các tùy chọn sau:
+* Tùy Chọn Thăm Dò:
 -4,   --ipv4                 Chỉ ping đến các địa chỉ IPv4
 -6,   --ipv6                 Chỉ ping đến các địa chỉ IPv6
 -b,   --size=BYTES           Lượng dữ liệu để ping (byte) (Mặc định: 56)
@@ -79,7 +86,7 @@ const huongdan =
 -t,   --timeout=MSEC         individual target initial timeout (Mặc định: 500 ms,
                              except with -l/-c/-C, where it's the -p period up to 2000 ms)>
 
-Tùy Chọn Đầu Ra:
+* Tùy Chọn Đầu Ra:
 -a,   --alive                show targets that are alive
 -A,   --addr                 show targets by address
 -C,   --vcount=N             same as -c, report results in verbose format
@@ -101,17 +108,18 @@ const FpingGlobal = () => {
   const fping = useModel('reconnaissance.fping');
 
   return (
-    <div className={styles.fpingGlobal}>
+    <div className={styles.nmapGlobal}>
       <FpingCheck />
-      <h3>Kết quả</h3>
-      <Spin spinning={fping.loading}>
-        <Table columns={columns} dataSource={fping.danhSach} />
-      </Spin>
+      <Title level={2}>Hướng dẫn</Title>
       <div className={styles.huongdan}>
         <pre className={styles.huongdanText}>
           {huongdan}
         </pre>
       </div>
+      <Title level={2}>Kết quả</Title>
+      <Spin spinning={fping.loading}>
+        <Table columns={columns} dataSource={fping.danhSach} />
+      </Spin>
     </div>
   );
 };
