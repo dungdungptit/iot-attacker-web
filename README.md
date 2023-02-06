@@ -1,6 +1,6 @@
-# Xét tuyển PTIT
+# Hệ thống tấn công mạng
 
-This project is initialized with [Xét tuyển PTIT](https://pro.ant.design). Follow is the quick guide for how to use.
+This project is initialized with [Hệ thống tấn công mạng](https://pro.ant.design). Follow is the quick guide for how to use.
 
 ## Environment Prepare
 
@@ -18,20 +18,40 @@ yarn
 
 ## Provided Scripts
 
-Xét tuyển PTIT provides some useful script to help you quick start and build with web project, code style check and test.
+Hệ thống tấn công mạng provides some useful script to help you quick start and build with web project, code style check and test.
 
 Scripts provided in `package.json`. It's safe to modify or add additional script:
+
+### Install nodejs(https://nodejs.org/en/download/)
+
+### Install typescript
+
+```bash
+npm install -g typescript
+```
+
+### Install yarn
+
+```bash
+npm install -g yarn
+```
+
+### Install dependencies
+
+```bash
+yarn
+```
 
 ### Start project
 
 ```bash
-npm start
+yarn start
 ```
 
 ### Build project
 
 ```bash
-npm run build
+yarn build
 ```
 
 ### Check code style
