@@ -67,7 +67,7 @@ const Login: React.FC = () => {
               </Form.Item>
 
               <a className={styles.loginFormFogot} href="">
-                Forgot password
+                Quên mật khẩu
               </a>
             </Form.Item>
 

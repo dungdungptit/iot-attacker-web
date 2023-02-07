@@ -12,7 +12,7 @@ const columns: ColumnsType<Fping> = [
     title: 'STT',
     dataIndex: 'id',
     key: 'id',
-    render: (text) => <a>{text}</a>,
+    render: (value, item, index) => `${index + 1}`,
   },
   {
     title: 'Port',

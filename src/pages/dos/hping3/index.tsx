@@ -8,6 +8,12 @@ import Title from 'antd/lib/typography/Title';
 
 const columns: ColumnsType<Hping3> = [
   {
+    title: 'STT',
+    dataIndex: 'id',
+    key: 'id',
+    render: (value, item, index) => `${index + 1}`,
+  },
+  {
     title: 'Port',
     dataIndex: 'port',
     key: 'port',

@@ -7,6 +7,8 @@ export default () => {
 
   const fpingModel = async (ipcheck: string, options: string) => {
     setLoading(true);
+    console.log(ipcheck, options);
+
     const response = await fping(ipcheck, options);
     setDanhSach(response.data);
     setLoading(false);

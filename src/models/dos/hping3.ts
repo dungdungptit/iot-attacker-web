@@ -10,8 +10,8 @@ export default () => {
   const hping3Model = async (ipcheck: string) => {
     setLoading(true);
     const response = await hping3(ipcheck);
-    setDanhSachTruoc(response.before);
-    setDanhSachSau(response.after);
+    setDanhSachTruoc(response?.data?.before);
+    setDanhSachSau(response?.data?.after);
     setLoading(false);
   };
 

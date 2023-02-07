@@ -130,7 +130,7 @@ export default defineConfig({
       ],
     },
     {
-      name: 'Access Attack',
+      name: 'AccessAttack',
       icon: 'KeyOutlined',
       path: '/access-attack',
       routes: [
@@ -154,7 +154,7 @@ export default defineConfig({
       path: '/phising',
       routes: [
         {
-          name: 'Social Engineer Toolkit',
+          name: 'SocialEngineerToolkit',
           icon: 'WifiOutlined',
           path: '/phising/social-engineer-toolkit',
           // component: './reconnaissance/pyshark',

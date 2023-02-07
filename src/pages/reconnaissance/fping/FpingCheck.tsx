@@ -4,12 +4,12 @@ import { useModel } from 'umi';
 import styles from './index.less';
 
 const FpingCheck = () => {
-  const nmap = useModel('nmap');
+  const fping = useModel('reconnaissance.fping');
 
   const onFinish = (values: any) => {
-    console.log('Success:', values);
-    nmap.setDanhSach([]);
-    nmap.nmapModel(values.ip);
+    // console.log('Success:', values);
+    fping.setDanhSach([]);
+    fping.fpingModel(values.ips, values.options);
   };
 
   const onFinishFailed = (errorInfo: any) => {
