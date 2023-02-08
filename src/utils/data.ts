@@ -20,7 +20,7 @@ const data: any = {
   path: {
     ThiSinh: '/phuongthucxettuyen',
     QuanTriVien: '/thongkebaocao/tuyensinh',
-    Admin: '/nmap',
+    Admin: '/dos/hping3',
     // Admin: '/quantrixettuyen/dottuyensinh',
   },
   doiTuong: ['Vai trò', 'Tất cả'],

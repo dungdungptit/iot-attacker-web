@@ -3,14 +3,15 @@ import { Button, Checkbox, Form, Input } from 'antd';
 import { useModel } from 'umi';
 import styles from './index.less';
 
-const Hping3Check = () => {
-  const hping3 = useModel('dos.hping3');
+const SqlmapCheck = () => {
+  const sqlmap = useModel('access.sqlmap');
 
   const onFinish = (values: any) => {
     console.log('Success:', values);
-    hping3.setDanhSachTruoc([]);
-    hping3.setDanhSachSau([]);
-    hping3.hping3Model(values.ip);
+    sqlmap.setData({
+      textarray: [],
+    });
+    sqlmap.sqlmapModel(values.targetType, values.targetDestination, values.options);
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -28,7 +29,15 @@ const Hping3Check = () => {
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
-      <Form.Item label="IP" name="ip" rules={[{ required: true, message: 'Nhập ip!' }]} className={styles.itemForm}>
+      <Form.Item label="Target Type" name="targetType" rules={[{ required: true, message: 'Nhập target type!' }]} className={styles.itemForm}>
+        <Input />
+      </Form.Item>
+
+      <Form.Item label="Target Destination" name="targetDestination" rules={[{ required: true, message: 'Nhập target destination!' }]} className={styles.itemForm}>
+        <Input />
+      </Form.Item>
+
+      <Form.Item label="Options" name="options" rules={[{ required: true, message: 'Nhập options!' }]} className={styles.itemForm}>
         <Input />
       </Form.Item>
 
@@ -41,4 +50,4 @@ const Hping3Check = () => {
   );
 };
 
-export default Hping3Check;
+export default SqlmapCheck;

@@ -6,12 +6,20 @@
 
 .formNmap{
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin: 0 auto;
-  width: 600px;
-  margin-top: 32px;
-  @media screen and (max-width: @screen-sm) {
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  width: 768px;
+  margin-top: 32px !important;
+  @media screen and (max-width: 768px) {
     width: 100%;
   }
+}
+
+.itemForm{
+  width: 100%;
+}
+
+.itemFormButton{
+  width: max-content;
 }

@@ -8,11 +8,17 @@ export default () => {
   const [danhSachSau, setDanhSachSau] = useState<Hping3[]>([]);
 
   const hping3Model = async (ipcheck: string) => {
-    setLoading(true);
-    const response = await hping3(ipcheck);
-    setDanhSachTruoc(response?.data?.before);
-    setDanhSachSau(response?.data?.after);
-    setLoading(false);
+    try {
+      setLoading(true);
+      const response = await hping3(ipcheck);
+      setDanhSachTruoc(response?.data?.before);
+      setDanhSachSau(response?.data?.after);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      setDanhSachSau([]);
+      setDanhSachTruoc([]);
+    }
   };
 
   return {

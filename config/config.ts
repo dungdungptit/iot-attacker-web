@@ -79,12 +79,12 @@ export default defineConfig({
         },
       ],
     },
-    {
-      name: 'Nmap',
-      icon: 'EyeOutlined',
-      path: '/nmap',
-      component: './nmap',
-    },
+    // {
+    //   name: 'Nmap',
+    //   icon: 'EyeOutlined',
+    //   path: '/nmap',
+    //   component: './nmap',
+    // },
     {
       name: 'Dos',
       icon: 'StopOutlined',
@@ -109,12 +109,12 @@ export default defineConfig({
       icon: 'SwapOutlined',
       path: '/reconnaissance',
       routes: [
-        // {
-        //   name: 'Nmap',
-        //   icon: 'EyeOutlined',
-        //   path: '/nmap',
-        //   component: './nmap',
-        // },
+        {
+          name: 'Nmap',
+          icon: 'EyeOutlined',
+          path: '/reconnaissance/nmap',
+          component: './reconnaissance/nmap',
+        },
         {
           name: 'Pyshark',
           icon: 'WifiOutlined',
@@ -144,7 +144,7 @@ export default defineConfig({
           name: 'Sqlmap',
           icon: 'WifiOutlined',
           path: '/access-attack/sqlmap',
-          // component: './access-attack/sqlmap',
+          component: './access/sqlmap',
         },
       ],
     },
