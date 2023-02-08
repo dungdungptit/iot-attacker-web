@@ -10,9 +10,10 @@ export interface Hping3 {
   reason: string;
 }
 
-export const hping3 = async (ipcheck: string) => {
+export const hping3 = async (ipcheck: string, options: string) => {
   const values = {
     ip: ipcheck,
+    options: options,
   };
   const res = await axios.post(`${ip}/attack/dos/hping3/`, values);
   console.log(res.data);

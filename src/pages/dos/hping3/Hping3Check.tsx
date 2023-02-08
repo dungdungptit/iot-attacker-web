@@ -10,7 +10,7 @@ const Hping3Check = () => {
     console.log('Success:', values);
     hping3.setDanhSachTruoc([]);
     hping3.setDanhSachSau([]);
-    hping3.hping3Model(values.ip);
+    hping3.hping3Model(values.ip, values.options);
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -29,6 +29,10 @@ const Hping3Check = () => {
       autoComplete="off"
     >
       <Form.Item label="IP" name="ip" rules={[{ required: true, message: 'Nhập ip!' }]} className={styles.itemForm}>
+        <Input />
+      </Form.Item>
+
+      <Form.Item label="Options" name="options" rules={[{ required: true, message: 'Nhập option!' }]} className={styles.itemForm}>
         <Input />
       </Form.Item>
 
