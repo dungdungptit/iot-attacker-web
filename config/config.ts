@@ -146,6 +146,12 @@ export default defineConfig({
           path: '/access-attack/sqlmap',
           component: './access/sqlmap',
         },
+        {
+          name: 'Hydra',
+          icon: 'WifiOutlined',
+          path: '/access-attack/hydra',
+          component: './access/hydra',
+        },
       ],
     },
     {
