@@ -96,12 +96,12 @@ export default defineConfig({
           path: '/dos/hping3',
           component: './dos/hping3',
         },
-        // {
-        //   name: 'GoldenEye',
-        //   icon: 'WifiOutlined',
-        //   path: '/dos/goldeneye',
-        //   // component: './dos/goldeneye',
-        // },
+        {
+          name: 'GoldenEye',
+          icon: 'WifiOutlined',
+          path: '/dos/goldeneye',
+          component: './dos/goldeneye',
+        },
       ],
     },
     {
