@@ -96,12 +96,12 @@ export default defineConfig({
           path: '/dos/hping3',
           component: './dos/hping3',
         },
-        {
-          name: 'GoldenEye',
-          icon: 'WifiOutlined',
-          path: '/dos/goldeneye',
-          // component: './dos/goldeneye',
-        },
+        // {
+        //   name: 'GoldenEye',
+        //   icon: 'WifiOutlined',
+        //   path: '/dos/goldeneye',
+        //   // component: './dos/goldeneye',
+        // },
       ],
     },
     {
@@ -119,7 +119,7 @@ export default defineConfig({
           name: 'Pyshark',
           icon: 'WifiOutlined',
           path: '/reconnaissance/pyshark',
-          // component: './reconnaissance/pyshark',
+          component: './reconnaissance/pyshark',
         },
         {
           name: 'Fping',
@@ -137,8 +137,8 @@ export default defineConfig({
         {
           name: 'EterCap',
           icon: 'WifiOutlined',
-          path: '/access-attack/etercap',
-          // component: './access-attack/etercap',
+          path: '/access-attack/ettercap',
+          component: './access/ettercap',
         },
         {
           name: 'Sqlmap',
@@ -167,19 +167,19 @@ export default defineConfig({
         },
       ],
     },
-    {
-      name: 'XSS',
-      icon: 'EditOutlined',
-      path: '/xss',
-      routes: [
-        {
-          name: 'Dvpwa',
-          icon: 'WifiOutlined',
-          path: '/xss/dvpwa',
-          // component: './xss/dvpwa',
-        },
-      ],
-    },
+    // {
+    //   name: 'XSS',
+    //   icon: 'EditOutlined',
+    //   path: '/xss',
+    //   routes: [
+    //     {
+    //       name: 'Dvpwa',
+    //       icon: 'WifiOutlined',
+    //       path: '/xss/dvpwa',
+    //       // component: './xss/dvpwa',
+    //     },
+    //   ],
+    // },
     {
       layout: false,
       path: '/kichhoattaikhoan',
