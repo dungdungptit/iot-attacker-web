@@ -115,6 +115,7 @@ const FpingGlobal = () => {
             return {
               ...item,
               index: (page - 1) * 10 + index + 1,
+              key: index
             };
           })}
         />

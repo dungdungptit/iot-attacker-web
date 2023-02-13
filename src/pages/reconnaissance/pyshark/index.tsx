@@ -78,6 +78,7 @@ const PysharkGlobal = () => {
           <a href={`${ip}/media/pcap/${pyshark.linkPcap}`} target={'_blank'} rel="noreferrer">Dowload file pcap</a>
         </Button>
         <Table columns={columns}
+          // scroll={{ y: 800, x: 500 }}
           pagination={{
             current: page,
             total: pyshark.data.length,
@@ -90,6 +91,7 @@ const PysharkGlobal = () => {
             return {
               ...item,
               index: (page - 1) * 10 + index + 1,
+              key: index
             };
           })}
         />

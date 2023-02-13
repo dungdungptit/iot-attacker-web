@@ -164,6 +164,7 @@ const Hping3Global = () => {
             return {
               ...item,
               index: (pagetruoc - 1) * 10 + index + 1,
+              key: index
             };
           })}
         />
@@ -184,6 +185,7 @@ const Hping3Global = () => {
             return {
               ...item,
               index: (pagesau - 1) * 10 + index + 1,
+              key: index
             };
           })}
         />
