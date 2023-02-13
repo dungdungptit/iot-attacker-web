@@ -5,13 +5,14 @@ import { Nmap } from '@/services/Reconnaissance/nmap';
 import { useModel } from 'umi';
 import styles from './index.less';
 import Title from 'antd/lib/typography/Title';
+import { useState } from 'react';
 
 const columns: ColumnsType<Nmap> = [
   {
     title: 'STT',
     dataIndex: 'id',
     key: 'id',
-    render: (value, item, index) => `${index + 1}`,
+    // render: (value, item, index) => `${index + 1}`,
   },
   {
     title: 'Port',
@@ -195,6 +196,7 @@ SEE THE MAN PAGE (https://nmap.org/book/man.html) FOR MORE OPTIONS AND EXAMPLES`
 
 const NmapGlobal = () => {
   const nmap = useModel('reconnaissance.nmap');
+  const [page, setPage] = useState(1);
 
   return (
     <div className={styles.nmapGlobal}>
@@ -207,7 +209,22 @@ const NmapGlobal = () => {
       </div>
       <h3>Kết quả</h3>
       <Spin spinning={nmap.loading}>
-        <Table columns={columns} dataSource={nmap.danhSach} />
+      <Table columns={columns}
+          pagination={{
+            current: page,
+            total: nmap.danhSach.length,
+            showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
+            onChange: (current) => {
+              setPage(current);
+            }
+          }}
+          dataSource={nmap.danhSach.map((item, index) => {
+            return {
+              ...item,
+              index: (page - 1) * 10 + index + 1,
+            };
+          })}
+        />
       </Spin>
     </div>
   );

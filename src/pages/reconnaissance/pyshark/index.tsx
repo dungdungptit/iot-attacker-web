@@ -7,13 +7,15 @@ import styles from './index.less';
 import Paragraph from 'antd/lib/typography/Paragraph';
 import Title from 'antd/lib/typography/Title';
 import { ip } from '@/utils/ip';
+import { useState } from 'react';
 
 const columns: ColumnsType<Pyshark> = [
   {
     title: 'STT',
     dataIndex: 'id',
     key: 'id',
-    render: (value, item, index) => `${index + 1}`,
+    // render stt tu 1 den n
+    // render: (value, item, index) => `${index + 1}`,
   },
   {
     title: 'Source',
@@ -65,6 +67,7 @@ const columns: ColumnsType<Pyshark> = [
 
 const PysharkGlobal = () => {
   const pyshark = useModel('reconnaissance.pyshark');
+  const [page, setPage] = useState(1);
 
   return (
     <div className={styles.nmapGlobal}>
@@ -74,7 +77,22 @@ const PysharkGlobal = () => {
         <Button type="primary" disabled={pyshark.linkPcap === ''}>
           <a href={`${ip}/media/pcap/${pyshark.linkPcap}`} target={'_blank'} rel="noreferrer">Dowload file pcap</a>
         </Button>
-        <Table columns={columns} dataSource={pyshark.data} />
+        <Table columns={columns}
+          pagination={{
+            current: page,
+            total: pyshark.data.length,
+            showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
+            onChange: (current) => {
+              setPage(current);
+            }
+          }}
+          dataSource={pyshark.data.map((item, index) => {
+            return {
+              ...item,
+              index: (page - 1) * 10 + index + 1,
+            };
+          })}
+        />
       </Spin>
     </div>
   );

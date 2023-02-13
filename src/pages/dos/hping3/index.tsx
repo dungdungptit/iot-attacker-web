@@ -5,13 +5,14 @@ import { Hping3 } from '@/services/Dos/hping3';
 import { useModel } from 'umi';
 import styles from './index.less';
 import Title from 'antd/lib/typography/Title';
+import { useState } from 'react';
 
 const columns: ColumnsType<Hping3> = [
   {
     title: 'STT',
     dataIndex: 'id',
     key: 'id',
-    render: (value, item, index) => `${index + 1}`,
+    // render: (value, item, index) => `${index + 1}`,
   },
   {
     title: 'Port',
@@ -136,6 +137,8 @@ ARS packet description (new, unstable)
 
 const Hping3Global = () => {
   const hping3 = useModel('dos.hping3');
+  const [pagetruoc, setPagetruoc] = useState(1);
+  const [pagesau, setPagesau] = useState(1);
 
   return (
     <div className={styles.nmapGlobal}>
@@ -148,12 +151,42 @@ const Hping3Global = () => {
       </div>
       <Title level={2}>Kết quả trước tấn công</Title>
       <Spin spinning={hping3.loading}>
-        <Table columns={columns} dataSource={hping3.danhSachTruoc} />
+      <Table columns={columns}
+          pagination={{
+            current: pagetruoc,
+            total: hping3.danhSachTruoc.length,
+            showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
+            onChange: (current) => {
+              setPagetruoc(current);
+            }
+          }}
+          dataSource={hping3.danhSachTruoc.map((item, index) => {
+            return {
+              ...item,
+              index: (pagetruoc - 1) * 10 + index + 1,
+            };
+          })}
+        />
       </Spin>
       <Divider />
       <Title level={2}>Kết quả sau tấn công</Title>
       <Spin spinning={hping3.loading}>
-        <Table columns={columns} dataSource={hping3.danhSachSau} />
+      <Table columns={columns}
+          pagination={{
+            current: pagesau,
+            total: hping3.danhSachSau.length,
+            showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
+            onChange: (current) => {
+              setPagesau(current);
+            }
+          }}
+          dataSource={hping3.danhSachSau.map((item, index) => {
+            return {
+              ...item,
+              index: (pagesau - 1) * 10 + index + 1,
+            };
+          })}
+        />
       </Spin>
     </div>
   );

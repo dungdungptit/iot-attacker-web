@@ -6,13 +6,14 @@ import { useModel } from 'umi';
 import styles from './index.less';
 import Paragraph from 'antd/lib/typography/Paragraph';
 import Title from 'antd/lib/typography/Title';
+import { useState } from 'react';
 
 const columns: ColumnsType<Fping> = [
   {
     title: 'STT',
     dataIndex: 'id',
     key: 'id',
-    render: (value, item, index) => `${index + 1}`,
+    // render: (value, item, index) => `${index + 1}`,
   },
   {
     title: 'Port',
@@ -35,24 +36,6 @@ const columns: ColumnsType<Fping> = [
   //     </Space>
   //   ),
   // },
-];
-
-const data: Fping[] = [
-  {
-    id: 1,
-    host: '192.168.1.1',
-    status: 'TCP',
-  },
-  {
-    id: 2,
-    host: '192.168.1.1',
-    status: 'TCP',
-  },
-  {
-    id: 3,
-    host: '192.168.1.1',
-    status: 'TCP',
-  },
 ];
 
 const huongdan =
@@ -106,6 +89,7 @@ Trường Options có thể nhập các tùy chọn sau:
 
 const FpingGlobal = () => {
   const fping = useModel('reconnaissance.fping');
+  const [page, setPage] = useState(1);
 
   return (
     <div className={styles.nmapGlobal}>
@@ -118,7 +102,22 @@ const FpingGlobal = () => {
       </div>
       <Title level={2}>Kết quả</Title>
       <Spin spinning={fping.loading}>
-        <Table columns={columns} dataSource={fping.danhSach} />
+      <Table columns={columns}
+          pagination={{
+            current: page,
+            total: fping.danhSach.length,
+            showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
+            onChange: (current) => {
+              setPage(current);
+            }
+          }}
+          dataSource={fping.danhSach.map((item, index) => {
+            return {
+              ...item,
+              index: (page - 1) * 10 + index + 1,
+            };
+          })}
+        />
       </Spin>
     </div>
   );
