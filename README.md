@@ -2,7 +2,15 @@
 
 This project is initialized with [Hệ thống tấn công mạng](https://pro.ant.design). Follow is the quick guide for how to use.
 
-## Environment Prepare
+## 1. Requirement( CPU, RAM, HDD, OS, Browser, ...)
+- CPU: Intel Core i5 2.4GHz
+- RAM: 8GB
+- HDD: 500GB
+- OS: Windows 10 64bit or Ubuntu 18.04 64bit
+- Browser: Chrome, Firefox, Edge, Opera, Safari
+## 2. Environment Prepare
+
+### 2.1. Install nodejs in https://nodejs.org/en/download/ if you don't have it
 
 Install `node_modules`:
 
@@ -16,13 +24,13 @@ or
 yarn
 ```
 
-## Provided Scripts
+## 2.2. Provided Scripts
 
 Hệ thống tấn công mạng provides some useful script to help you quick start and build with web project, code style check and test.
 
 Scripts provided in `package.json`. It's safe to modify or add additional script:
 
-### Install nodejs(https://nodejs.org/en/download/)
+
 
 ### Install typescript
 
@@ -46,6 +54,18 @@ yarn
 
 ```bash
 yarn start
+```
+
+### Open browser
+
+```bash
+http://localhost:8000 or http://your_ip:8000
+```
+
+### Change ip address in `src/utils/ip.ts`
+
+```bash
+ip = 'http://your_ip:port'
 ```
 
 ### Build project
