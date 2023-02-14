@@ -2,10 +2,10 @@
 
 This project is initialized with [Hệ thống tấn công mạng](https://pro.ant.design). Follow is the quick guide for how to use.
 
-## 1. Requirement( CPU, RAM, HDD, OS, Browser, ...)
+## 1. Requirement( CPU, RAM, Memory, OS, Browser, ...)
 - CPU: Intel Core i5 2.4GHz
-- RAM: 8GB
-- HDD: 500GB
+- RAM: 4GB
+- Memory: 10GB
 - OS: Windows 10 64bit or Ubuntu 18.04 64bit
 - Browser: Chrome, Firefox, Edge, Opera, Safari
 ## 2. Environment Prepare
