@@ -47,6 +47,7 @@ export default defineConfig({
           path: '/user/login',
           layout: false,
           name: 'login',
+          // component: './auth',
           component: './auth',
         },
 
@@ -154,19 +155,19 @@ export default defineConfig({
         },
       ],
     },
-    {
-      name: 'Phising',
-      icon: 'MailOutlined',
-      path: '/phising',
-      routes: [
-        {
-          name: 'SocialEngineerToolkit',
-          icon: 'WifiOutlined',
-          path: '/phising/social-engineer-toolkit',
-          // component: './reconnaissance/pyshark',
-        },
-      ],
-    },
+    // {
+    //   name: 'Phising',
+    //   icon: 'MailOutlined',
+    //   path: '/phising',
+    //   routes: [
+    //     {
+    //       name: 'SocialEngineerToolkit',
+    //       icon: 'WifiOutlined',
+    //       path: '/phising/social-engineer-toolkit',
+    //       // component: './reconnaissance/pyshark',
+    //     },
+    //   ],
+    // },
     // {
     //   name: 'XSS',
     //   icon: 'EditOutlined',

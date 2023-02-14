@@ -10,12 +10,12 @@ export default () => {
     setLoading(true);
     const response = await login(payload);
     console.log(response);
-    const token = response.auth_token;
+    const token = response.data?.auth_token;
 
     localStorage.setItem('token', token);
-    localStorage.setItem('vaiTro', 'Admin');
-    history.push('/');
+
     setLoading(false);
+    return response;
   };
 
   return {

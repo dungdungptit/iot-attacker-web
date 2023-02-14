@@ -18,6 +18,7 @@ export enum EKhuVucUuTien {
 
 export enum ESystemRole {
   Admin = 'Admin',
+  User = 'User',
   QuanTriVien = 'QuanTriVien',
   ThiSinh = 'ThiSinh',
   PhuHuynh = 'PhuHuynh',

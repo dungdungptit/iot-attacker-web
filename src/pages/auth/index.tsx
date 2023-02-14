@@ -1,27 +1,46 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
-import { login } from '@/services/Auth/auth';
+import { getInfo, login } from '@/services/Auth/auth';
 import { Link, useModel } from 'umi';
 import styles from './index.less';
 import Title from 'antd/lib/typography/Title';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
+import { history } from 'umi';
+import data from '@/utils/data';
 
 const Login: React.FC = () => {
   const { initialState, setInitialState } = useModel('@@initialState');
   const { loading, setLoading, loginModel } = useModel('auth');
 
-  const onFinish = (values: { username: string; password: string }) => {
+  const onFinish = async (values: { username: string; password: string }) => {
     // console.log('Success:', values);
     console.log('Success:', values);
-    loginModel({ username: values.username, password: values.password });
-    setInitialState({
-      ...initialState,
-      currentUser: {
-        hoDem: 'Nguyen',
-        ten: 'Duc',
-        systemRole: 'Admin',
-      },
-    });
+    const res = await loginModel({ username: values.username, password: values.password });
+    // console.log('res', res);
+    if (res.status === 200 && res.data?.auth_token) {
+      const info = await getInfo(values.username);
+      localStorage.setItem('token', res.data?.auth_token);
+      localStorage.setItem('username', values.username);
+      console.log('info', info);
+      if(info.status === 200){
+        let systemRole = '';
+        if(info.data?.data?.is_staff === true){
+          systemRole = 'User'
+        }else if (info.data?.data?.is_superuser === true){
+          systemRole = 'Admin'
+        }
+        localStorage.setItem('vaiTro', systemRole);
+        setInitialState({
+          ...initialState,
+          currentUser: {
+            ...info.data?.data,
+            systemRole: systemRole,
+          },
+        });
+        history.push(data?.path?.[systemRole] ?? '/');
+        return;
+      }
+    }
   };
 
   const onFinishFailed = (errorInfo: any) => {

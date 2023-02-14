@@ -9,8 +9,9 @@ import type { RequestOptionsInit, ResponseError } from 'umi-request';
 import GlobalFooter from './components/GlobalFooter';
 import NotAccessible from './pages/exception/403';
 import NotFoundContent from './pages/exception/404';
-import { getInfo, getInfoAdmin } from './services/ant-design-pro/api';
-import type { Login } from './services/ant-design-pro/typings';
+import { getInfo} from './services/Auth/auth';
+// import type { Login } from './services/ant-design-pro/typings';
+
 import { ESystemRole } from './utils/constants';
 import data from './utils/data';
 // import { getPhanNhom } from './utils/utils';
@@ -27,14 +28,14 @@ export const initialStateConfig = {
  * */
 export async function getInitialState(): Promise<{
   settings?: Partial<LayoutSettings>;
-  // currentUser?: Login.Profile & Login.ProfileAdmin;
-  currentUser?: {
-    hoDem: string;
-    ten: string;
-    systemRole: string;
-  };
+  currentUser?: Login.User
+  // currentUser?: {
+  //   hoDem: string;
+  //   ten: string;
+  //   systemRole: string;
+  // };
   partner_id?: number;
-  fetchUserInfo?: () => Promise<{ data: { data: Login.Profile & Login.ProfileAdmin } } | undefined>;
+  fetchUserInfo?: () => Promise<{ data: { data: Login.User } } | undefined>;
   authorizedRoles?: any[];
   phanNhom?: {
     userId: string;
@@ -54,25 +55,20 @@ export async function getInitialState(): Promise<{
     try {
       const auth = localStorage.getItem('vaiTro') as ESystemRole;
       const token = localStorage.getItem('token');
+      const username = localStorage.getItem('username');
       let currentUser;
+      console.log(username);
 
       if (auth && token) {
-        if ([ESystemRole.Admin, ESystemRole.QuanTriVien].includes(auth))
-          // currentUser = (await getInfoAdmin())?.data?.data;
-          currentUser = {
-            hoDem: 'Nguyen',
-            ten: 'Duc',
-            systemRole: 'Admin',
-          };
-        else
-          currentUser = {
-            hoDem: 'Nguyen',
-            ten: 'Duc',
-            systemRole: 'Admin',
-          };
-        // else currentUser = (await getInfo())?.data?.data;
+        console.log('auth', auth);
+        console.log((await getInfo(username)));
+        if ([ESystemRole.Admin || ESystemRole.User].includes(auth)) currentUser = (await getInfo(username))?.data?.data;
+        else currentUser = (await getInfo(username))?.data?.data;
       }
-      return currentUser;
+      return {
+        ...currentUser,
+        systemRole: auth,
+      }
     } catch (error) {
       const { location } = history;
       if (!pathAuth.includes(location.pathname)) history.push(loginPath);
@@ -80,14 +76,15 @@ export async function getInitialState(): Promise<{
     return undefined;
   };
   if (history.location.pathname !== loginPath) {
-    const currentUser: Login.Profile & Login.ProfileAdmin = await fetchUserInfo();
+    const currentUser: Login.User = await fetchUserInfo();
+    console.log(currentUser);
     // const phanNhom = await getPhanNhom();
     return {
       fetchUserInfo,
       currentUser,
       settings: {
         primaryColor: 'daybreak',
-        layout: currentUser?.systemRole === ESystemRole.ThiSinh ? 'side' : 'side',
+        layout: currentUser?.systemRole === ESystemRole.User ? 'side' : 'side',
       },
       authorizedRoles: [],
       // phanNhom,
@@ -147,7 +144,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     rightContentRender: () => <RightContent marginTopGioiThieuChung={17} />,
     disableContentMargin: false,
     waterMarkProps: {
-      content: initialState?.currentUser?.ten,
+      content: initialState?.currentUser?.last_name,
     },
     // headerRender: (props, dom) => <div style={{ backgroundColor: '#CC0D00' }}>{dom}</div>,
     isMobile: true,
@@ -156,22 +153,31 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
       const { location } = history;
       const token = localStorage.getItem('token');
       const vaiTro = initialState?.currentUser?.systemRole;
-      const verifiedEmail = initialState?.currentUser?.emailVerify?.verified === true;
-      const verifiedCCCD = initialState?.currentUser?.cmtCccd !== undefined;
+      // const verifiedEmail = initialState?.currentUser?.emailVerify?.verified === true;
+      // const verifiedCCCD = initialState?.currentUser?.cmtCccd !== undefined;
       if (!token && location.pathname !== loginPath && !pathAuth.includes(location.pathname)) {
         history.push(loginPath);
-      } else if (initialState?.currentUser && token) {
-        if (
-          vaiTro !== ESystemRole.ThiSinh ||
-          (vaiTro === ESystemRole.ThiSinh && verifiedCCCD && verifiedEmail)
-        ) {
-          history.push(
-            location.pathname === loginPath
-              ? data.path[`${vaiTro || initialState?.currentUser?.systemRole}`]
-              : location.pathname,
-          );
-        } else if (!verifiedEmail) history.push('/kichhoattaikhoan');
-        else history.push('/verifycccd');
+      }
+      // else if (initialState?.currentUser && token) {
+      //   if (
+      //     vaiTro !== ESystemRole.ThiSinh ||
+      //     (vaiTro === ESystemRole.ThiSinh && verifiedCCCD && verifiedEmail)
+      //   ) {
+      //     history.push(
+      //       location.pathname === loginPath
+      //         ? data.path[`${vaiTro || initialState?.currentUser?.systemRole}`]
+      //         : location.pathname,
+      //     );
+      //   } else if (!verifiedEmail) history.push('/kichhoattaikhoan');
+      //   else history.push('/verifycccd');
+      // }
+      else if (initialState?.currentUser && token) {
+        if ((vaiTro == ESystemRole.User || vaiTro == ESystemRole.Admin) && location.pathname === loginPath) {
+          history.push(data.path[`${vaiTro || initialState?.currentUser?.systemRole}`]);
+        }
+        else{
+          history.push(location.pathname)
+        }
       }
     },
     logo: <img src="/favicon.ico" onClick={() => history.push('/')} />,
@@ -179,7 +185,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
       return (
         <Tooltip
           placement={
-            initialState?.currentUser?.systemRole === ESystemRole.ThiSinh ? 'bottom' : 'right'
+            initialState?.currentUser?.systemRole === ESystemRole.User ? 'right' : 'right'
           }
           title={item.name}
         >

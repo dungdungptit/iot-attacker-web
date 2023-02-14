@@ -18,9 +18,10 @@ const data: any = {
     ETrangThaiHoSo.KHONG_TIEP_NHAN,
   ],
   path: {
-    ThiSinh: '/phuongthucxettuyen',
-    QuanTriVien: '/thongkebaocao/tuyensinh',
+    // ThiSinh: '/phuongthucxettuyen',
+    // QuanTriVien: '/thongkebaocao/tuyensinh',
     Admin: '/dos/hping3',
+    User: '/dos/hping3',
     // Admin: '/quantrixettuyen/dottuyensinh',
   },
   doiTuong: ['Vai trò', 'Tất cả'],
