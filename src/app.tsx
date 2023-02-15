@@ -9,7 +9,7 @@ import type { RequestOptionsInit, ResponseError } from 'umi-request';
 import GlobalFooter from './components/GlobalFooter';
 import NotAccessible from './pages/exception/403';
 import NotFoundContent from './pages/exception/404';
-import { getInfo} from './services/Auth/auth';
+import { getInfo } from './services/Auth/auth';
 // import type { Login } from './services/ant-design-pro/typings';
 
 import { ESystemRole } from './utils/constants';
@@ -84,7 +84,8 @@ export async function getInitialState(): Promise<{
       currentUser,
       settings: {
         primaryColor: 'daybreak',
-        layout: currentUser?.systemRole === ESystemRole.User ? 'side' : 'side',
+        // layout: currentUser?.systemRole === ESystemRole.User ? 'side' : 'side',
+        layout: 'side',
       },
       authorizedRoles: [],
       // phanNhom,
@@ -175,7 +176,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
         if ((vaiTro == ESystemRole.User || vaiTro == ESystemRole.Admin) && location.pathname === loginPath) {
           history.push(data.path[`${vaiTro || initialState?.currentUser?.systemRole}`]);
         }
-        else{
+        else {
           history.push(location.pathname)
         }
       }

@@ -22,12 +22,12 @@ const Login: React.FC = () => {
       localStorage.setItem('token', res.data?.auth_token);
       localStorage.setItem('username', values.username);
       console.log('info', info);
-      if(info.status === 200){
+      if (info.status === 200) {
         let systemRole = '';
-        if(info.data?.data?.is_staff === true){
-          systemRole = 'User'
-        }else if (info.data?.data?.is_superuser === true){
+        if (info.data?.data?.is_superuser === true) {
           systemRole = 'Admin'
+        } else {
+          systemRole = 'User'
         }
         localStorage.setItem('vaiTro', systemRole);
         setInitialState({
