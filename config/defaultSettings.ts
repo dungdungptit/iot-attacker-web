@@ -6,7 +6,7 @@ const Settings: LayoutSettings & {
 } = {
   navTheme: 'dark',
   primaryColor: '#CC0D00',
-  layout: 'top',
+  layout: 'side',
   contentWidth: 'Fluid',
   fixedHeader: true,
   fixSiderbar: true,
