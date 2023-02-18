@@ -92,13 +92,13 @@ export default defineConfig({
       path: '/dos',
       routes: [
         {
-          name: 'Hping3',
+          name: 'DDoS',
           icon: 'WifiOutlined',
           path: '/dos/hping3',
           component: './dos/hping3',
         },
         {
-          name: 'GoldenEye',
+          name: 'RDoS/DRDoS',
           icon: 'WifiOutlined',
           path: '/dos/goldeneye',
           component: './dos/goldeneye',
@@ -111,19 +111,19 @@ export default defineConfig({
       path: '/reconnaissance',
       routes: [
         {
-          name: 'Nmap',
+          name: 'PortScan',
           icon: 'EyeOutlined',
           path: '/reconnaissance/nmap',
           component: './reconnaissance/nmap',
         },
         {
-          name: 'Pyshark',
+          name: 'PacketSniffer',
           icon: 'WifiOutlined',
           path: '/reconnaissance/pyshark',
           component: './reconnaissance/pyshark',
         },
         {
-          name: 'Fping',
+          name: 'PingSweep',
           icon: 'WifiOutlined',
           path: '/reconnaissance/fping',
           component: './reconnaissance/fping',
@@ -136,19 +136,19 @@ export default defineConfig({
       path: '/access-attack',
       routes: [
         {
-          name: 'EterCap',
+          name: 'MITM',
           icon: 'WifiOutlined',
           path: '/access-attack/ettercap',
           component: './access/ettercap',
         },
         {
-          name: 'Sqlmap',
+          name: 'SQLInjection',
           icon: 'WifiOutlined',
           path: '/access-attack/sqlmap',
           component: './access/sqlmap',
         },
         {
-          name: 'Hydra',
+          name: 'PasswordAttack',
           icon: 'WifiOutlined',
           path: '/access-attack/hydra',
           component: './access/hydra',

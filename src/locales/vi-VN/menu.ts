@@ -119,4 +119,12 @@ export default {
   "menu.BruteForcePassword": "Brute Force Password",
   "menu.BruteForcePassword.Hydra": "Hydra",
   "menu.AccessAttack.Hydra": "Hydra",
+  "menu.Reconnaissance.PingSweep": "Ping Sweep",
+  "menu.AccessAttack.PasswordAttack": "Password Attack",
+  "menu.AccessAttack.SQLInjection": "SQL Injection",
+  "menu.AccessAttack.MITM": "MITM",
+  "menu.Reconnaissance.PacketSniffer": "Packet Sniffer",
+  "menu.Reconnaissance.PortScan": "Port Scan",
+  "menu.Dos.RDoS/DRDoS": "RDoS/DRDoS",
+  "menu.Dos.DDoS": "DDoS",
 };
