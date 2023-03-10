@@ -1,13 +1,15 @@
-# Hệ thống tấn công mạng
+# Hệ thống giả lập các cuộc tấn công mạng nhằm phục vụ công tác đào tạo tại Học viện Công nghệ Bưu chính Viễn thông
 
-This project is initialized with [Hệ thống tấn công mạng](https://pro.ant.design). Follow is the quick guide for how to use.
+This project is initialized with [Hệ thống giả lập các cuộc tấn công mạng nhằm phục vụ công tác đào tạo tại Học viện Công nghệ Bưu chính Viễn thông](https://pro.ant.design). Follow is the quick guide for how to use.
 
 ## 1. Requirement( CPU, RAM, Memory, OS, Browser, ...)
+
 - CPU: Intel Core i5 2.4GHz
 - RAM: 4GB
 - Memory: 10GB
 - OS: Windows 10 64bit or Ubuntu 18.04 64bit
 - Browser: Chrome, Firefox, Edge, Opera, Safari
+
 ## 2. Environment Prepare
 
 ### 2.1. Install nodejs in https://nodejs.org/en/download/ if you don't have it
@@ -26,11 +28,9 @@ yarn
 
 ## 2.2. Provided Scripts
 
-Hệ thống tấn công mạng provides some useful script to help you quick start and build with web project, code style check and test.
+Hệ thống giả lập các cuộc tấn công mạng nhằm phục vụ công tác đào tạo tại Học viện Công nghệ Bưu chính Viễn thông provides some useful script to help you quick start and build with web project, code style check and test.
 
 Scripts provided in `package.json`. It's safe to modify or add additional script:
-
-
 
 ### Install typescript
 

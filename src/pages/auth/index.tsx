@@ -18,22 +18,24 @@ const Login: React.FC = () => {
     const res = await loginModel({ username: values.username, password: values.password });
     // console.log('res', res);
     if (res.status === 200 && res.data?.auth_token) {
-      const info = await getInfo(values.username);
+      const info = await getInfo();
       localStorage.setItem('token', res.data?.auth_token);
       localStorage.setItem('username', values.username);
       console.log('info', info);
       if (info.status === 200) {
         let systemRole = '';
-        if (info.data?.data?.is_superuser === true) {
-          systemRole = 'Admin'
+        if (info.data?.is_superuser === true) {
+          systemRole = 'Admin';
+        } else if (info.data?.is_staff === true) {
+          systemRole = 'Staff';
         } else {
-          systemRole = 'User'
+          systemRole = 'User';
         }
         localStorage.setItem('vaiTro', systemRole);
         setInitialState({
           ...initialState,
           currentUser: {
-            ...info.data?.data,
+            ...info.data,
             systemRole: systemRole,
           },
         });
@@ -53,7 +55,10 @@ const Login: React.FC = () => {
         <div className={styles.top}>
           <Link to="/" className={styles.header}>
             <img alt="logo" className={styles.logo} src="/logo.png" />
-            <Title level={1} className={styles.title}>Hệ thống tấn công mạng</Title>
+            <Title level={1} className={styles.title}>
+              Hệ thống giả lập các cuộc tấn công mạng nhằm phục vụ công tác đào tạo tại Học viện
+              Công nghệ Bưu chính Viễn thông
+            </Title>
           </Link>
         </div>
 
@@ -64,16 +69,13 @@ const Login: React.FC = () => {
             initialValues={{ remember: true }}
             onFinish={onFinish}
           >
-            <Form.Item
-              name="username"
-              rules={[{ required: true, message: 'Nhập tài khoản!' }]}
-            >
-              <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Tài khoản" />
+            <Form.Item name="username" rules={[{ required: true, message: 'Nhập tài khoản!' }]}>
+              <Input
+                prefix={<UserOutlined className="site-form-item-icon" />}
+                placeholder="Tài khoản"
+              />
             </Form.Item>
-            <Form.Item
-              name="password"
-              rules={[{ required: true, message: 'Nhập mật khẩu!' }]}
-            >
+            <Form.Item name="password" rules={[{ required: true, message: 'Nhập mật khẩu!' }]}>
               <Input
                 prefix={<LockOutlined className="site-form-item-icon" />}
                 type="password"
@@ -94,7 +96,9 @@ const Login: React.FC = () => {
               <Button type="primary" htmlType="submit" className={styles.loginFormButton}>
                 Đăng nhập
               </Button>
-              <a href="" className={styles.loginFormRegister}>Đăng ký</a>
+              <a href="" className={styles.loginFormRegister}>
+                Đăng ký
+              </a>
             </Form.Item>
           </Form>
         </div>

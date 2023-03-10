@@ -20,14 +20,16 @@ const data: any = {
   path: {
     // ThiSinh: '/phuongthucxettuyen',
     // QuanTriVien: '/thongkebaocao/tuyensinh',
-    Admin: '/dos/hping3',
-    User: '/dos/hping3',
+    Admin: '/',
+    User: '/',
+    Staff: '/',
     // Admin: '/quantrixettuyen/dottuyensinh',
   },
   doiTuong: ['Vai trò', 'Tất cả'],
   vaiTro: [
     { value: 'sinh_vien', text: 'Sinh viên' },
     { value: 'nhan_vien', text: 'Cán bộ, giảng viên' },
+    { value: 'admin', text: 'Admin' },
   ],
   gioiTinh: ['Nam', 'Nữ'],
   'info.anToan': [

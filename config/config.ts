@@ -1,3 +1,4 @@
+import { layout } from './../src/app';
 // https://umijs.org/config/
 import { defineConfig } from 'umi';
 import defaultSettings from './defaultSettings';
@@ -65,6 +66,14 @@ export default defineConfig({
           component: '404',
         },
       ],
+    },
+    {
+      path: '/',
+      hideInMenu: true,
+      name: 'welcome',
+      icon: 'smile',
+      component: './Welcome',
+      layout: false,
     },
     {
       hideInMenu: true,
@@ -181,6 +190,7 @@ export default defineConfig({
     //     },
     //   ],
     // },
+
     {
       layout: false,
       path: '/kichhoattaikhoan',
@@ -194,6 +204,38 @@ export default defineConfig({
       component: './VerifyCCCD',
       hideInMenu: true,
       access: 'thiSinhChuaKichHoat',
+    },
+    {
+      path: '/users',
+      name: 'quanlinguoidung',
+      // maChucNang: 'QUAN_LY_NGUOI_DUNG',
+      access: 'adminVaStaff',
+      icon: 'UnorderedListOutlined',
+      routes: [
+        {
+          path: './danh-sach-nguoi-dung',
+          name: 'danhsachnguoidung',
+          icon: 'UnorderedListOutlined',
+          // maChucNang: 'DANH_SACH_NGUOI_DUNG',
+          component: './QuanLyNguoiDung',
+          access: 'adminVaStaff',
+        },
+        {
+          path: './danh-sach-nhom-nguoi-dung',
+          name: 'danhsachnhomnguoidung',
+          icon: 'UnorderedListOutlined',
+          // maChucNang: 'DANH_SACH_NHOM_NGUOI_DUNG',
+          component: './QuanLyNhomNguoiDung',
+          access: 'admin',
+        },
+        // {
+        //   path: './bang-menu',
+        //   name: 'Menu',
+        //   // maChucNang: 'MENU',
+        //   icon: 'UnorderedListOutlined',
+        //   // component: './QuanLyMenu',
+        // },
+      ],
     },
 
     {

@@ -12,7 +12,7 @@ const Settings: LayoutSettings & {
   fixSiderbar: true,
   colorWeak: false,
   headerTheme: 'dark',
-  title: 'Tấn công mạng',
+  title: 'Hệ thống giả lập tấn công mạng',
   pwa: false,
   logo: './favicon.ico',
   iconfontUrl: '',

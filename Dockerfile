@@ -8,3 +8,6 @@ RUN npm install --force
 
 EXPOSE 8000
 CMD [ "npm", "start" ]
+
+# docker build -t dockerized-react .
+# docker run -dp 3000:8000 dockerized-react

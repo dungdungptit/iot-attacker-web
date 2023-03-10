@@ -216,6 +216,7 @@ export function includes(str1: string, str2: string) {
 // }
 
 export function handlePhanNhom(initialState: any, code: string): boolean {
+  console.log('initialState', initialState);
   if (initialState?.currentUser?.systemRole === ESystemRole.Admin) return true;
   let flag = false;
   if (initialState?.phanNhom?.danhSachPhanNhom?.length === 0) return false;

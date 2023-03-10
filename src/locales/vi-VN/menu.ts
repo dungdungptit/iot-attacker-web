@@ -127,4 +127,8 @@ export default {
   "menu.Reconnaissance.PortScan": "Port Scan",
   "menu.Dos.RDoS/DRDoS": "RDoS/DRDoS",
   "menu.Dos.DDoS": "DDoS",
+  "menu.quanlinguoidung": "Quản lí người dùng",
+  "menu.quanlinguoidung.danhsachnguoidung": "Danh sách người dùng",
+  "menu.quanlinguoidung.danhsachnhomnguoidung": "Danh sách nhóm người dùng",
+  "menu.quanlinguoidung.Menu": "Menu",
 };

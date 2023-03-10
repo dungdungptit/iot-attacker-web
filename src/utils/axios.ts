@@ -15,7 +15,7 @@ axios.interceptors.request.use(
       if (token) {
         // eslint-disable-next-line no-param-reassign
         // config.headers.auth_token = `${token}`;
-        config.headers.Authorization = `Bearer ${token}`;
+        config.headers.Authorization = `token ${token}`;
       }
     }
     return config;
@@ -35,7 +35,7 @@ axios.interceptors.response.use(
           message: 'Bad request',
           description:
             data.error[
-              error?.response?.data?.detail?.errorCode || error?.response?.data?.errorCode
+            error?.response?.data?.detail?.errorCode || error?.response?.data?.errorCode
             ] ||
             error?.response?.data?.errorDescription ||
             error?.data?.detail?.message ||
@@ -66,7 +66,7 @@ axios.interceptors.response.use(
             'Lỗi không tìm thấy dữ liệu, bạn hãy thử f5 refresh lại trình duyệt để cập nhật phiên bản mới nhất.',
           description:
             data.error[
-              error?.response?.data?.detail?.errorCode || error?.response?.data?.errorCode
+            error?.response?.data?.detail?.errorCode || error?.response?.data?.errorCode
             ] ||
             error?.response?.data?.errorDescription ||
             error?.data?.detail?.message ||
@@ -86,7 +86,7 @@ axios.interceptors.response.use(
           message: 'Dữ liệu chưa đúng',
           description:
             data.error[
-              error?.response?.data?.detail?.errorCode || error?.response?.data?.errorCode
+            error?.response?.data?.detail?.errorCode || error?.response?.data?.errorCode
             ] ||
             error?.response?.data?.errorDescription ||
             error?.data?.detail?.message ||

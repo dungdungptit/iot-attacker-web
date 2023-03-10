@@ -19,17 +19,18 @@ export default function access(initialState: {
     vaiTro: string;
   };
 }) {
+  // const verifiedCCCD = initialState?.currentUser?.cmtCccd !== undefined;
+  // const verifiedEmail = initialState?.currentUser?.emailVerify?.verified ?? false;
   const vaiTro = initialState?.currentUser?.systemRole;
-  const verifiedEmail = initialState?.currentUser?.emailVerify?.verified ?? false;
-  const verifiedCCCD = initialState?.currentUser?.cmtCccd !== undefined;
   const token = localStorage.getItem('token');
   return {
-    admin: token && vaiTro && vaiTro === ESystemRole.Admin,
-    thiSinh: token && vaiTro && verifiedEmail && verifiedCCCD && vaiTro === ESystemRole.ThiSinh,
-    thiSinhChuaKichHoat: token && vaiTro === ESystemRole.ThiSinh,
-    quanTriVien: token && vaiTro && vaiTro === ESystemRole.QuanTriVien,
-    adminVaQuanTriVien:
-      token && vaiTro && (vaiTro === ESystemRole.Admin || vaiTro === ESystemRole.QuanTriVien),
+    // thiSinhChuaKichHoat: token && vaiTro === ESystemRole.ThiSinh,
+    // user: token && vaiTro && verifiedEmail && verifiedCCCD && vaiTro === ESystemRole.User,
+    admin: (token && vaiTro) && (vaiTro === ESystemRole.Admin),
+    user: (token && vaiTro) && (vaiTro === ESystemRole.User),
+    staff: (token && vaiTro) && (vaiTro === ESystemRole.Staff),
+    adminVaStaff:
+      (token && vaiTro) && (vaiTro === ESystemRole.Admin || vaiTro === ESystemRole.Staff),
     routeFilter: (route: any) => {
       return handlePhanNhom(initialState, route?.maChucNang);
     },

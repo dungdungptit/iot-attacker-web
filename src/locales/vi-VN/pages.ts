@@ -1,5 +1,5 @@
 export default {
-  'pages.layouts.userLayout.title': 'HỆ THỐNG TẤN CÔNG MẠNG',
+  'pages.layouts.userLayout.title': 'Hệ thống giả lập các cuộc tấn công mạng nhằm phục vụ công tác đào tạo tại Học viện Công nghệ Bưu chính Viễn thông',
   'pages.login.accountLogin.tab': 'Tài khoản người dùng',
   'pages.login.accountLoginAdmin.tab': 'Tài khoản quản trị viên',
   'pages.login.accountRegister.tab': 'Đăng ký tài khoản',

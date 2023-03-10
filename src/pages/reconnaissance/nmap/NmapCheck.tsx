@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
 import { useModel } from 'umi';
 import styles from './index.less';
 
 const NmapCheck = () => {
   const nmap = useModel('reconnaissance.nmap');
+
+  // useEffect(() => {
+  //   const options: string[] = ['-d', '-dd', '-Pn', '-sU', '-s0'];
+  //   if (nmap.loading === false) {
+  //     const randomElement = options[Math.floor(Math.random() * options.length)];
+  //     console.log('options', randomElement);
+  //     nmap.nmapModel('192.168.1.249', randomElement);
+  //   }
+  // }, [nmap.loading]);
 
   const onFinish = (values: any) => {
     console.log('Success:', values);
@@ -27,11 +36,21 @@ const NmapCheck = () => {
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
-      <Form.Item label="IP" name="ip" rules={[{ required: true, message: 'Nhập ip!' }]} className={styles.itemForm}>
+      <Form.Item
+        label="IP"
+        name="ip"
+        rules={[{ required: true, message: 'Nhập ip!' }]}
+        className={styles.itemForm}
+      >
         <Input />
       </Form.Item>
 
-      <Form.Item label="Options" name="options" rules={[{ required: true, message: 'Nhập option!' }]} className={styles.itemForm}>
+      <Form.Item
+        label="Options"
+        name="options"
+        rules={[{ required: true, message: 'Nhập option!' }]}
+        className={styles.itemForm}
+      >
         <Input />
       </Form.Item>
 

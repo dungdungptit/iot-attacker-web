@@ -1,10 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
 import { useModel } from 'umi';
 import styles from './index.less';
 
 const Hping3Check = () => {
   const hping3 = useModel('dos.hping3');
+
+  // useEffect(() => {
+  //   const options: string[] = ['-S', '-F', '-R', '-P', '-A', '-U'];
+  //   if (hping3.loading === false) {
+  //     const randomElement = options[Math.floor(Math.random() * options.length)];
+  //     console.log('options', randomElement);
+  //     hping3.hping3Model('192.168.1.249', randomElement);
+  //   }
+  // }, [hping3.loading]);
 
   const onFinish = (values: any) => {
     console.log('Success:', values);
@@ -28,11 +37,21 @@ const Hping3Check = () => {
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
-      <Form.Item label="IP" name="ip" rules={[{ required: true, message: 'Nhập ip!' }]} className={styles.itemForm}>
+      <Form.Item
+        label="IP"
+        name="ip"
+        rules={[{ required: true, message: 'Nhập ip!' }]}
+        className={styles.itemForm}
+      >
         <Input />
       </Form.Item>
 
-      <Form.Item label="Options" name="options" rules={[{ required: true, message: 'Nhập option!' }]} className={styles.itemForm}>
+      <Form.Item
+        label="Options"
+        name="options"
+        rules={[{ required: true, message: 'Nhập option!' }]}
+        className={styles.itemForm}
+      >
         <Input />
       </Form.Item>
 

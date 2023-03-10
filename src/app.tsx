@@ -28,7 +28,7 @@ export const initialStateConfig = {
  * */
 export async function getInitialState(): Promise<{
   settings?: Partial<LayoutSettings>;
-  currentUser?: Login.User
+  currentUser?: Login.User;
   // currentUser?: {
   //   hoDem: string;
   //   ten: string;
@@ -61,14 +61,15 @@ export async function getInitialState(): Promise<{
 
       if (auth && token) {
         console.log('auth', auth);
-        console.log((await getInfo(username)));
-        if ([ESystemRole.Admin || ESystemRole.User].includes(auth)) currentUser = (await getInfo(username))?.data?.data;
-        else currentUser = (await getInfo(username))?.data?.data;
+        console.log(await getInfo());
+        if ([ESystemRole.Admin || ESystemRole.User].includes(auth))
+          currentUser = (await getInfo())?.data;
+        else currentUser = (await getInfo())?.data;
       }
       return {
         ...currentUser,
         systemRole: auth,
-      }
+      };
     } catch (error) {
       const { location } = history;
       if (!pathAuth.includes(location.pathname)) history.push(loginPath);
@@ -173,11 +174,13 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
       //   else history.push('/verifycccd');
       // }
       else if (initialState?.currentUser && token) {
-        if ((vaiTro == ESystemRole.User || vaiTro == ESystemRole.Admin) && location.pathname === loginPath) {
+        if (
+          (vaiTro == ESystemRole.User || vaiTro == ESystemRole.Admin) &&
+          location.pathname === loginPath
+        ) {
           history.push(data.path[`${vaiTro || initialState?.currentUser?.systemRole}`]);
-        }
-        else {
-          history.push(location.pathname)
+        } else {
+          history.push(location.pathname);
         }
       }
     },
@@ -185,9 +188,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     menuItemRender: (item, dom) => {
       return (
         <Tooltip
-          placement={
-            initialState?.currentUser?.systemRole === ESystemRole.User ? 'right' : 'right'
-          }
+          placement={initialState?.currentUser?.systemRole === ESystemRole.User ? 'right' : 'right'}
           title={item.name}
         >
           <div
@@ -204,6 +205,6 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
 
     menuHeaderRender: undefined,
     ...initialState?.settings,
-    title: 'Tấn công mạng',
+    title: 'Hệ thống giả lập tấn công mạng',
   };
 };

@@ -75,6 +75,7 @@ const TableBase = (props: Props) => {
   const totalRef = useRef<any>();
   useEffect(() => {
     getData(params);
+    console.log('getData', params);
   }, [...dependencies]);
 
   useEffect(() => {
