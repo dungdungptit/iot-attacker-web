@@ -162,6 +162,12 @@ export default defineConfig({
           path: '/access-attack/hydra',
           component: './access/hydra',
         },
+        {
+          name: 'Backdoor',
+          icon: 'WifiOutlined',
+          path: '/access-attack/backdoor',
+          component: './access/backdoor',
+        },
       ],
     },
     // {
