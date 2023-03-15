@@ -63,8 +63,8 @@ export async function getInitialState(): Promise<{
         console.log('auth', auth);
         console.log(await getInfo());
         if ([ESystemRole.Admin || ESystemRole.User].includes(auth))
-          currentUser = (await getInfo())?.data;
-        else currentUser = (await getInfo())?.data;
+          currentUser = (await getInfo())?.data?.data;
+        else currentUser = (await getInfo())?.data?.data;
       }
       return {
         ...currentUser,

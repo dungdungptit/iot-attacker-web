@@ -7,9 +7,9 @@ export const login = async (payload: { username: string; password: string }) => 
 };
 
 export async function getInfo() {
-  return axios.get(`${ip}/auth/users/me/`);
+  return axios.get(`${ip}/users/current/`);
 }
 
 export async function getInfoAdmin() {
-  return axios.get(`${ip}/auth/users/me/`);
+  return axios.get(`${ip}/users/current/`);
 }
