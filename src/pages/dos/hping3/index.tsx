@@ -151,23 +151,27 @@ const Hping3Global = () => {
       <Spin spinning={hping3.loading}>
         {hping3.danhSach.length > 0 &&
           hping3.danhSach.map((i, idx) => (
-            <div style={{ marginTop: 16 }}>
+            <div style={{ marginTop: 16 }} key={`table${idx}`}>
               <Title level={3}>Lần quét thứ {idx + 1}</Title>
               <Title level={2}>Kết quả trước tấn công</Title>
               <Table
                 columns={columns}
                 pagination={{
-                  current: page,
+                  current: hping3.pagetruoc[idx],
                   total: hping3.danhSach[idx]?.before?.length,
                   showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
                   onChange: (current) => {
-                    setPage(current);
+                    hping3.setPageTruoc((prev) => {
+                      const newPage = [...prev];
+                      newPage[idx] = current;
+                      return newPage;
+                    });
                   },
                 }}
                 dataSource={hping3.danhSach[idx]?.before?.map((item, index) => {
                   return {
                     ...item,
-                    index: (page - 1) * 10 + index + 1,
+                    index: (hping3.pagetruoc[idx] - 1) * 10 + index + 1,
                     key: index,
                   };
                 })}
@@ -177,17 +181,21 @@ const Hping3Global = () => {
               <Table
                 columns={columns}
                 pagination={{
-                  current: page,
+                  current: hping3.pagesau[idx],
                   total: hping3.danhSach[idx]?.after?.length,
                   showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
                   onChange: (current) => {
-                    setPage(current);
+                    hping3.setPageSau((prev) => {
+                      const newPage = [...prev];
+                      newPage[idx] = current;
+                      return newPage;
+                    });
                   },
                 }}
                 dataSource={hping3.danhSach[idx]?.after?.map((item, index) => {
                   return {
                     ...item,
-                    index: (page - 1) * 10 + index + 1,
+                    index: (hping3.pagesau[idx] - 1) * 10 + index + 1,
                     key: index,
                   };
                 })}

@@ -7,6 +7,53 @@ import styles from './index.less';
 import Title from 'antd/lib/typography/Title';
 import { useState } from 'react';
 
+const datass = [
+  {
+    id: 1,
+    data: [
+      {
+        id: 1,
+        port: '8000',
+        protocol: 'tcp',
+        state: 'open',
+        service: 'http-alt',
+        reason: '',
+      },
+      {
+        id: 2,
+        port: '9090',
+        protocol: 'tcp',
+        state: 'open',
+        service: 'zeus-admin',
+        reason: '',
+      },
+    ],
+    't,otal': 2,
+  },
+  {
+    id: 2,
+    data: [
+      {
+        id: 1,
+        port: '8000',
+        protocol: 'tcp',
+        state: 'open',
+        service: 'http-alt',
+        reason: '',
+      },
+      {
+        id: 2,
+        port: '9090',
+        protocol: 'tcp',
+        state: 'open',
+        service: 'zeus-admin',
+        reason: '',
+      },
+    ],
+    total: 2,
+  },
+];
+
 const columns: ColumnsType<Nmap> = [
   {
     title: 'STT',
@@ -196,7 +243,6 @@ SEE THE MAN PAGE (https://nmap.org/book/man.html) FOR MORE OPTIONS AND EXAMPLES`
 
 const NmapGlobal = () => {
   const nmap = useModel('reconnaissance.nmap');
-  const [page, setPage] = useState(1);
 
   return (
     <div className={styles.nmapGlobal}>
@@ -209,22 +255,29 @@ const NmapGlobal = () => {
       <Spin spinning={nmap.loading}>
         {nmap.danhSach.length > 0 &&
           nmap.danhSach.map((i, idx) => (
-            <div style={{ marginTop: 16 }}>
+            <div style={{ marginTop: 16 }} key={`table${idx}`}>
               <Title level={3}>Lần quét thứ {idx + 1}</Title>
               <Table
                 columns={columns}
                 pagination={{
-                  current: page,
+                  current: nmap.page[idx],
                   total: nmap.danhSach[idx]?.data?.length,
+                  pageSize: 1,
                   showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
                   onChange: (current) => {
-                    setPage(current);
+                    console.log(current);
+
+                    nmap.setPage((prev) => {
+                      const newPage = [...prev];
+                      newPage[idx] = current;
+                      return newPage;
+                    });
                   },
                 }}
                 dataSource={nmap.danhSach[idx]?.data?.map((item, index) => {
                   return {
                     ...item,
-                    index: (page - 1) * 10 + index + 1,
+                    index: (nmap.page[idx] - 1) * 10 + index + 1,
                     key: index,
                   };
                 })}
