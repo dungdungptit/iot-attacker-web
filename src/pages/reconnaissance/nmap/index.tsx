@@ -262,7 +262,6 @@ const NmapGlobal = () => {
                 pagination={{
                   current: nmap.page[idx],
                   total: nmap.danhSach[idx]?.data?.length,
-                  pageSize: 1,
                   showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
                   onChange: (current) => {
                     console.log(current);
