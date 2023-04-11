@@ -8,7 +8,7 @@ const GoldeneyecapCheck = () => {
 
   const onFinish = (values: any) => {
     console.log('Success:', values);
-    goldeneye.goldeneyeModel();
+    goldeneye.goldeneyeModel(values);
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -26,9 +26,37 @@ const GoldeneyecapCheck = () => {
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
+      <Form.Item
+        label="Url"
+        name="url"
+        rules={[{ required: true, message: 'Nhập url!' }]}
+        className={styles.itemForm}
+      >
+        <Input />
+      </Form.Item>
+      <Form.Item label="Workers" name="workers" className={styles.itemForm}>
+        <Input />
+      </Form.Item>
+      <Form.Item label="Sockets" name="sockets" className={styles.itemForm}>
+        <Input />
+      </Form.Item>
+      <Form.Item label="Method" name="method" className={styles.itemForm}>
+        <Input />
+      </Form.Item>
+      <Form.Item label="Thời gian" name="thoigian" className={styles.itemForm}>
+        <Input />
+      </Form.Item>
+      <Form.Item label="Số lần" name="solan" className={styles.itemForm}>
+        <Input />
+      </Form.Item>
       <Form.Item wrapperCol={{ offset: 8, span: 16 }} className={styles.itemForm}>
-        <Button type="primary" htmlType="submit" className={styles.itemFormButton} loading={goldeneye.loading}>
-          Launch Terminal
+        <Button
+          type="primary"
+          htmlType="submit"
+          className={styles.itemFormButton}
+          loading={goldeneye.loading}
+        >
+          Submit
         </Button>
       </Form.Item>
     </Form>
