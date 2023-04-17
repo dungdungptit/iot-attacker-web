@@ -87,7 +87,7 @@ const Hping3Check = () => {
           className={styles.itemFormButton}
           loading={hping3.loading}
         >
-          Kiểm tra
+          Submit
         </Button>
       </Form.Item>
     </Form>

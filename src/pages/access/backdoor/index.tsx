@@ -2,7 +2,7 @@ import TableBase from '@/components/Table';
 import { IBackdoorRecord } from '@/models/access/backdoor';
 import { IUserRecord } from '@/models/users';
 import { IColumn } from '@/utils/interfaces';
-import { ArrowDownOutlined, DeleteOutlined, EditOutlined, UploadOutlined } from '@ant-design/icons';
+import { EyeOutlined, DeleteOutlined, EditOutlined, UploadOutlined } from '@ant-design/icons';
 import {
   Divider,
   List,
@@ -16,17 +16,19 @@ import {
   Input,
 } from 'antd';
 import React, { useState } from 'react';
-import { useModel } from 'umi';
+import { useAccess, useModel } from 'umi';
 import styles from './index.less';
 import FormBackdoor from './FormBackdoor';
 import FormUser from './FormUser';
+import { ip } from '@/utils/ip';
 
 const DlpMain = () => {
   const backdoorModel = useModel('access.backdoor');
+  const access = useAccess();
 
   const handleDownload = (record: IBackdoorRecord) => {
     console.log(record);
-    backdoorModel.download(record);
+    window.open(`${ip}/media/backdoor/${record.filename}`);
   };
 
   const renderLast = (value: any, record: IBackdoorRecord) => (
@@ -34,22 +36,26 @@ const DlpMain = () => {
       <Button
         type="primary"
         shape="circle"
-        icon={<ArrowDownOutlined />}
-        title="Tải xuống"
+        icon={<EyeOutlined />}
+        title="Xem chi tiết"
         onClick={() => handleDownload(record)}
       />
-      <Divider type="vertical" />
-      <Button
-        type="primary"
-        shape="circle"
-        icon={<DeleteOutlined />}
-        title="Xóa"
-        onClick={() => {
-          backdoorModel.deleteRecord(record).then(() => {
-            backdoorModel.getData();
-          });
-        }}
-      />
+      {access.adminVaStaff && (
+        <React.Fragment>
+          <Divider type="vertical" />
+          <Button
+            type="primary"
+            shape="circle"
+            icon={<DeleteOutlined />}
+            title="Xóa"
+            onClick={() => {
+              backdoorModel.deleteRecord(record).then(() => {
+                backdoorModel.getData();
+              });
+            }}
+          />
+        </React.Fragment>
+      )}
     </React.Fragment>
   );
 
@@ -62,7 +68,7 @@ const DlpMain = () => {
     },
     {
       title: 'Filename',
-      dataIndex: 'filename',
+      dataIndex: 'name',
       search: 'search',
       notRegex: true,
       width: 200,
@@ -83,9 +89,9 @@ const DlpMain = () => {
     <div className={styles.nmapGlobal}>
       <TableBase
         modelName={'access.backdoor'}
-        title="Quản lý danh sách file mã độc"
+        title="Danh sách hướng dẫn tạo mã độc và thực hiện tấn công backdoor"
         columns={columns}
-        hascreate={true}
+        hascreate={access.adminVaStaff ? true : false}
         formType={'Drawer'}
         dependencies={[backdoorModel.page, backdoorModel.limit, backdoorModel.condition]}
         widthDrawer={800}

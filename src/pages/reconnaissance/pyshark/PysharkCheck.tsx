@@ -9,7 +9,12 @@ const PysharkCheck = () => {
   const onFinish = (values: any) => {
     console.log('Success:', values);
     pyshark.setData([]);
-    pyshark.pysharkModel(values.inf, Number(values.packetCount), Number(values.timeOut), values.protocolFilters);
+    pyshark.pysharkModel(
+      values.inf,
+      Number(values.packetCount),
+      Number(values.timeOut),
+      values.protocolFilters,
+    );
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -27,25 +32,50 @@ const PysharkCheck = () => {
       onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
-      <Form.Item label="Inf" name="inf" rules={[{ required: true, message: 'Nhập inf!' }]} className={styles.itemForm}>
+      <Form.Item
+        label="Interface"
+        name="inf"
+        rules={[{ required: true, message: 'Nhập interface!' }]}
+        className={styles.itemForm}
+      >
         <Input />
       </Form.Item>
 
-      <Form.Item label="Packet Count" name="packetCount" rules={[{ required: false, message: 'Nhập packet count!' }]} className={styles.itemForm}>
+      <Form.Item
+        label="Số lượng gói tin"
+        name="packetCount"
+        rules={[{ required: false, message: 'Nhập số lượng gói tin!' }]}
+        className={styles.itemForm}
+      >
         <Input />
       </Form.Item>
 
-      <Form.Item label="Time Out" name="timeOut" rules={[{ required: false, message: 'Nhập time out!' }]} className={styles.itemForm}>
+      <Form.Item
+        label="Thời gian"
+        name="timeOut"
+        rules={[{ required: false, message: 'Nhập thời gian' }]}
+        className={styles.itemForm}
+      >
         <Input />
       </Form.Item>
 
-      <Form.Item label="Protocol Filters" name="protocolFilters" rules={[{ required: false, message: 'Nhập protocol filters!' }]} className={styles.itemForm}>
+      <Form.Item
+        label="Giao thức"
+        name="protocolFilters"
+        rules={[{ required: false, message: 'Nhập giao thức!' }]}
+        className={styles.itemForm}
+      >
         <Input />
       </Form.Item>
 
       <Form.Item wrapperCol={{ offset: 8, span: 16 }} className={styles.itemForm}>
-        <Button type="primary" htmlType="submit" className={styles.itemFormButton}>
-          Kiểm tra
+        <Button
+          type="primary"
+          htmlType="submit"
+          className={styles.itemFormButton}
+          loading={pyshark.loading}
+        >
+          Submit
         </Button>
       </Form.Item>
     </Form>

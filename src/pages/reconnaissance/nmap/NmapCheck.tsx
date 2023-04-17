@@ -103,7 +103,7 @@ const NmapCheck = () => {
           className={styles.itemFormButton}
           loading={nmap.loading}
         >
-          Kiểm tra
+          Submit
         </Button>
       </Form.Item>
     </Form>

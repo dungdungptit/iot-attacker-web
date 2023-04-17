@@ -125,7 +125,7 @@ const HydraCheck = () => {
           className={styles.itemFormButton}
           loading={hydra.loading}
         >
-          Kiểm tra
+          Submit
         </Button>
       </Form.Item>
     </Form>

@@ -74,10 +74,13 @@ const PysharkGlobal = () => {
       <PysharkCheck />
       <Title level={2}>Kết quả</Title>
       <Spin spinning={pyshark.loading}>
-        <Button type="primary" disabled={pyshark.linkPcap === ''}>
-          <a href={`${ip}/media/pcap/${pyshark.linkPcap}`} target={'_blank'} rel="noreferrer">Dowload file pcap</a>
+        <Button type="primary" disabled={pyshark.linkPcap === ''} loading={pyshark.loading}>
+          <a href={`${ip}/media/pcap/${pyshark.linkPcap}`} target={'_blank'} rel="noreferrer">
+            Dowload file pcap
+          </a>
         </Button>
-        <Table columns={columns}
+        <Table
+          columns={columns}
           // scroll={{ y: 800, x: 500 }}
           pagination={{
             current: page,
@@ -85,13 +88,13 @@ const PysharkGlobal = () => {
             showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
             onChange: (current) => {
               setPage(current);
-            }
+            },
           }}
           dataSource={pyshark.data.map((item, index) => {
             return {
               ...item,
               index: (page - 1) * 10 + index + 1,
-              key: index
+              key: index,
             };
           })}
         />
