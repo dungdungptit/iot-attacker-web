@@ -30,18 +30,18 @@ const SqlmapCheck = () => {
       autoComplete="off"
     >
       <Form.Item
-        label="Target Type"
+        label="Loại mục tiêu"
         name="targetType"
-        rules={[{ required: true, message: 'Nhập target type!' }]}
+        rules={[{ required: true, message: 'Nhập loại mục tiêu!' }]}
         className={styles.itemForm}
       >
         <Input />
       </Form.Item>
 
       <Form.Item
-        label="Target Destination"
+        label="Mục tiêu"
         name="targetDestination"
-        rules={[{ required: true, message: 'Nhập target destination!' }]}
+        rules={[{ required: true, message: 'Nhập mục tiêu!' }]}
         className={styles.itemForm}
       >
         <Input />
